@@ -1,0 +1,49 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Enter the first number:");
+        string input1 = Console.ReadLine();
+
+        Console.WriteLine("Enter the second number:");
+        string input2 = Console.ReadLine();
+
+        try
+        {
+            int result = Divide(input1, input2);
+            Console.WriteLine($"The result of division is: {result}");
+        }
+        catch (FormatException ex)
+        {
+            Console.WriteLine("Error: One or both of the inputs are not valid integers.");
+            Console.WriteLine($"Details: {ex.Message}");
+        }
+        catch (DivideByZeroException ex)
+        {
+            Console.WriteLine("Error: Division by zero is not allowed.");
+            Console.WriteLine($"Details: {ex.Message}");
+        }
+        catch (OverflowException ex)
+        {
+            Console.WriteLine("Error: The number entered is too large or too small for an Int32.");
+            Console.WriteLine($"Details: {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("An unexpected error occurred.");
+            Console.WriteLine($"Details: {ex.Message}");
+        }
+
+        Console.WriteLine("Press any key to exit...");
+        Console.ReadKey();
+    }
+
+    static int Divide(string strA, string strB)
+    {
+        int a = Convert.ToInt32(strA);
+        int b = Convert.ToInt32(strB);
+        return a / b;
+    }
+}
